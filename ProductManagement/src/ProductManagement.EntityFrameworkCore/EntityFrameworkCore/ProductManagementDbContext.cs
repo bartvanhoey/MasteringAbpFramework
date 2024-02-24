@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductManagement.Categories;
+using ProductManagement.Products;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -24,6 +27,11 @@ public class ProductManagementDbContext :
     ITenantManagementDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
+
+
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+
 
     #region Entities from the modules
 
@@ -76,11 +84,32 @@ public class ProductManagementDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(ProductManagementConsts.DbTablePrefix + "YourEntities", ProductManagementConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.Entity<Category>(b =>
+        {
+            b.ToTable(ProductManagementConsts.DbTablePrefix + "Categories", ProductManagementConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired().HasMaxLength(CategoryConsts.MaxNameLength);
+            b.HasIndex(x => x.Name);
+        });
+
+        builder.Entity<Product>(b =>
+        {
+            b.ToTable(ProductManagementConsts.DbTablePrefix + "Products", ProductManagementConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.HasOne(x => x.Category).WithMany().HasForeignKey(x => x.CategoryId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+            // b.HasOne<Category>().WithMany().HasForeignKey(x => x.CategoryId).IsRequired().OnDelete(DeleteBehavior.Restrict);
+        });
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

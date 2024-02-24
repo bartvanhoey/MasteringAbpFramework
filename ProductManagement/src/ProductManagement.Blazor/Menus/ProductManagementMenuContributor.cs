@@ -48,7 +48,7 @@ public class ProductManagementMenuContributor : IMenuContributor
                 icon: "fas fa-home"
             )
         );
-     
+
         var administration = context.Menu.GetAdministration();
 
         if (MultiTenancyConsts.IsEnabled)
@@ -63,22 +63,29 @@ public class ProductManagementMenuContributor : IMenuContributor
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenus.GroupName, 3);
 
+
+        var productManagementMenu = new ApplicationMenuItem("productManagement", l["Menu:productManagement"], icon: "fa fa-icon-name");
+        var productsMenu = new ApplicationMenuItem("ProductManagement.Products", l["Menu:Products"], url: "/products");
+        
+        context.Menu.AddItem(productManagementMenu);
+        
+        productManagementMenu.AddItem(productsMenu);
+
         return Task.CompletedTask;
     }
 
     private Task ConfigureUserMenuAsync(MenuConfigurationContext context)
     {
-        var accountStringLocalizer = context.GetLocalizer<AccountResource>();
+        // var accountStringLocalizer = context.GetLocalizer<AccountResource>();
+        // var authServerUrl = _configuration["AuthServer:Authority"] ?? "";
 
-        var authServerUrl = _configuration["AuthServer:Authority"] ?? "";
-
-        context.Menu.AddItem(new ApplicationMenuItem(
-            "Account.Manage",
-            accountStringLocalizer["MyAccount"],
-            $"{authServerUrl.EnsureEndsWith('/')}Account/Manage?returnUrl={_configuration["App:SelfUrl"]}",
-            icon: "fa fa-cog",
-            order: 1000,
-            null).RequireAuthenticated());
+        // context.Menu.AddItem(new ApplicationMenuItem(
+        //     "Account.Manage",
+        //     accountStringLocalizer["MyAccount"],
+        //     $"{authServerUrl.EnsureEndsWith('/')}Account/Manage?returnUrl={_configuration["App:SelfUrl"]}",
+        //     icon: "fa fa-cog",
+        //     order: 1000,
+        //     null).RequireAuthenticated());
 
         return Task.CompletedTask;
     }

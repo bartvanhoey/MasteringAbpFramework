@@ -1,8 +1,18 @@
 {
-  "culture": "en",
-  "texts": {
-    "Menu:Home": "Home",
-    "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
-  }
+    "culture": "en",
+    "texts": {
+        "Menu:Home": "Home",
+        "Menu:productManagement": "productManagement",
+        "Welcome": "Welcome",
+        "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+        "ProductIsFreeCargo": "IsFreeCargo",
+        "ProductPrice": "Price",
+        "ProductCategory": "Category",
+        "PickAnCategory": "Pick PropertyName Category",
+        "ProductReleaseDate": "ReleaseDate",
+        "ProductStockState": "StockState",
+        "Menu:Products": "Products",
+        "ProductNew": "New Product",
+        "ProductDeletionConfirmationMessage": "Are you sure to delete the Product '{0}'?"
+    }
 }

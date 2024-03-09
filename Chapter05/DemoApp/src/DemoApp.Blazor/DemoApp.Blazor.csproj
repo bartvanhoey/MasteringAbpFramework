@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DemoApp.HttpApi.Client\DemoApp.HttpApi.Client.csproj" />
+    <ProjectReference Include="..\..\modules\SmsSending\SmsSending.csproj" />
   </ItemGroup>
 
 

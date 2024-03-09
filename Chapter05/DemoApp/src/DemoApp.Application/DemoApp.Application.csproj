@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DemoApp.Domain\DemoApp.Domain.csproj" />
     <ProjectReference Include="..\DemoApp.Application.Contracts\DemoApp.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\modules\SmsSending\SmsSending.csproj" />
   </ItemGroup>
 
   <ItemGroup>

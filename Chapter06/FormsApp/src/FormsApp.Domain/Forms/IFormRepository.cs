@@ -10,6 +10,8 @@ namespace FormsApp.Forms
     {
         Task<List<Form>> GetListAsync(string name, bool includeDrafts);
         public Task DeleteAllDraftsAsync();
+
+        Task<Form> GetWithQuestionsAsync(Guid formId);
     }
 
 

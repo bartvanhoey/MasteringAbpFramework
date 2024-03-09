@@ -30,6 +30,21 @@ namespace FormsApp.Forms
                 .ToListAsync();
         }
 
+        public async Task<Form> GetWithQuestionsAsync(Guid formId)
+        {
+            
+        
+        
+            var dbContext = await GetDbContextAsync();
+            return await dbContext.Forms.Include(x => x.Questions).SingleAsync(f => f.Id == formId);
+        
+        
+        
+        
+        }
+
+
+
 
         // public async Task<List<Form>> GetListAsync(string name, bool includeDrafts)
         // {
